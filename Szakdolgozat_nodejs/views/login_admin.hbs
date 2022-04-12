@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gokart-telemetria ROS kompatibilitással</title>
+
+    <link rel="stylesheet" href="/style/login_with_password-style.css" />
+    <link rel="stylesheet" href="/style/index.css">
+
+
+  </head>
+
+  <body>
+
+    <nav>
+    
+    <h4>GOKART telemetria</h4>
+    
+    <ul>      
+
+        <li><a href="/">Versenyző regisztráció</a></li>
+
+
+        <li><a href="/register_admin">Admin regisztráció</a></li>
+    
+    </ul>
+  
+    </nav>
+
+    <section class="box">
+
+      <div class="design">
+
+        <img class="gokart-img" src="/img/gokart-login.jpg" />
+
+      </div>
+
+      <div class="form">
+
+        <div class="formname">Admin bejelentkezés</div>
+
+        <form action="/auth/login_admin" method="POST">
+
+            <input type="text" name="username" class="input-field" placeholder="Felhasználónév" />
+
+            <input type="email" name="email" class="input-field" placeholder="Email" />
+            
+            <input type="password" name="password" class="input-field" placeholder="Jelszó" />
+
+            <input type="password" name="identifier_code" class="input-field" title="Csak a kód ismeretével jelentkezhetsz be." placeholder="Azonosító kód" />
+
+            <input type="submit" class="btn" value="Bejelentkezés" />
+
+       </form>
+
+        {{#if message}}
+       <h4 class="alert alert-alert mt-4">{{message}}</h4>
+       {{/if}}
+
+      </div>
+
+    </section>
+
+  </body>
+
+</html>

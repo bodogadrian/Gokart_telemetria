@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <link rel="stylesheet" href="/style/index.css">
+  <link rel="stylesheet" href="/style/admin.css">
+  <title>Document</title>
+</head>
+<body>
+  
+  <nav>
+  
+    <h4>GOKART telemetria</h4>
+  
+    <ul>
+  
+        <li><a href="/leaderboard_admin">Eredmények</a></li>
+
+        <li><a href="/gokart">Verseny</a></li>
+        
+        <li><a href="/">Kilépés</a></li>
+
+    </ul>
+  
+  </nav>
+    
+    <h2>Feliratkozott topicok</h2>
+    
+    <div id="container">
+      
+    </div>
+    
+    <div id="btns">
+    
+      <button type="button" class="button" onclick="download_CSV_file()">Referencia kiexportálása</button>`
+
+    </div>
+
+<div class="frame"><canvas id="myChart"></canvas>
+
+<button type="button" id="btn">Pályarajz küldése</button>
+
+</div>    
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+</body>
+
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="/js/admin.js"></script>
+
+</html>

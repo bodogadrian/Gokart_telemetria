@@ -1,0 +1,95 @@
+<html>
+    <head>
+
+        <script type="text/javascript" src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/style/index.css">
+
+        <link rel="stylesheet" href="/style/leaderboard.css">
+
+ 
+
+    </head>
+
+        <body>
+
+            <nav>
+                <h4>GOKART telemetria</h4>
+            <ul>
+                
+                <li><a href="/gokart">Verseny</a></li>
+        
+                <li><a href="/">Kilépés</a></li>
+
+                </ul>
+            </nav>
+
+            <div class="container">
+
+      <table class="table">
+
+        <thead>
+
+            <p class="text">Verseny eredmények</p>
+
+          <tr class="tr">
+
+            <th>#</th>
+
+            <th>Versenyző:</th>
+
+            <th>Legjobb köridő:</th>
+
+            <th>Átlag köridő:</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="mytable">
+          
+        </tbody>
+
+      </table>
+
+    </div>
+           
+       <script type="application/javascript">
+
+               function secondtime(time){
+                 m = Math.trunc(time / 60) % 60;
+                 s = Math.trunc(time) % 60;
+                 ms = Math.trunc(time * 1000) % 100;
+
+                 return `${m || '--'}:${s.toString().length === 1 ? `0${s}` : s || '--'}.${ms || '--'}`;
+            }
+            const name = JSON.parse(localStorage.getItem("users"))
+            console.log(name.length)
+            buildTable(name)
+            function buildTable(data){
+              let table = document.getElementById("mytable");
+
+              for(let i=0; i<data.length;i++){
+                let row = `<tr>
+                              <td>${i+1}</td>
+                              <td>${data[i].username}</td>
+                              <td>${secondtime(data[i].fastest)}</td>
+                              <td>${secondtime(data[i].average)}</td>
+                            </tr>`
+                        table.innerHTML += row;
+              }
+            }
+            </script> 
+        </body>
+
+</html>
