@@ -42,7 +42,6 @@ for(let i=1;i<4;i++){
 
 }
 
-
 var myChart2;
 
 let canvas2 = document.getElementById('myChart2');
@@ -144,6 +143,8 @@ let canvas1 = document.getElementById('myChart1');
 
 let ctx1 = canvas1.getContext('2d');
 
+const colors = ["red", "blue", "yellow","grey","black","purple","brown"]
+
 socket.addEventListener("message",function (event){
 
     try{
@@ -163,36 +164,18 @@ socket.addEventListener("message",function (event){
     
             type: 'scatter',
     
-            data: {
-    
-                datasets: [{
-    
-                    label:[datas.nameandgokart[0].username+" - "+datas.nameandgokart[0].gokart_name.substring(4,8)],
-                    
-                    backgroundColor:["red"],
-    
-                    data: [],
-    
-                },{
-    
-                    label:[datas.nameandgokart[1].username+" - "+datas.nameandgokart[1].gokart_name.substring(4,8)],
-                    
-                    backgroundColor:["blue"],
-    
-                    data: [],
-    
-                },{
-                    
-                    label:[datas.nameandgokart[2].username+" - "+datas.nameandgokart[2].gokart_name.substring(4,8)],
-    
-                    backgroundColor:["yellow"],
-    
-                    data: [],
+                data: {
 
-    
-                }]
-    
-            },
+                    datasets: datas.nameandgokart.map((x, i) => ({
+
+                        label:  [x.username + " - " + x.gokart_name.substring(4,8)],
+
+                        backgroundColor: [colors[i]],
+
+                        data: []
+                    })
+                    
+            )},
     
             options: {
     
@@ -281,13 +264,6 @@ const firstname = document.getElementById("firstname")
 const secondname = document.getElementById("secondname")
 const thirdname = document.getElementById("thirdname")
 
-const name1 = document.getElementById("name1")
-const name2 = document.getElementById("name2")
-const name3 = document.getElementById("name3")
-const best1 = document.getElementById("best1")
-const best2 = document.getElementById("best2")
-const best3 = document.getElementById("best3")
-
 class Round{
     constructor(user) {
         this.user=user;
@@ -299,11 +275,11 @@ class Round{
     }
 }
 
-const roundsA = [new Round(names[0])]
-const roundsB = [new Round(names[1])]
-const roundsC = [new Round(names[2])]
+const rounds = [];
+for(let i=0;i<names.length;i++){
+    rounds.push([new Round(names[i])])
+}
 
-const rounds = [roundsA,roundsB,roundsC]
 
 function measure_lap_time(r,y,x){
     if(y > 0 && y < 0.5 && x > -4 && x < 0){
@@ -356,12 +332,28 @@ if("Ycoordinates" in localStorage){
 
 const xCoordinates = localStorage.getItem("Xcoordinates");
 const yCoordinates = localStorage.getItem("Ycoordinates");
+const speedstuff = document.getElementById("speeds")
 
 
 let arrX = [];
 let arrY = [];
 
+for(let i=0;i<gokartssub.length;i++){
+    speedstuff.innerHTML += `<div class="speedelements"> 
+        <div><img id="gokart" src="/img/gokart.png"></img></div>                
 
+        <div class="speedplayer1">               
+            
+        <div class="name">Name:</div>
+
+        <span id="setting">Best:<span class = "best">--:--.--</span></span>
+        
+        <span id="setting">Top speed:<span class = "speed"">0 MPH</span></span>
+
+        </div>
+
+        </div>`
+}
 for (const [i,topics] of gokartssub.entries()){
     
     topics.subscribe(function(message){
@@ -414,6 +406,7 @@ for (const [i,topics] of gokartssub.entries()){
             
             users.push(userData)
         }
+
         localStorage.setItem('users', JSON.stringify(users))
 
         const fastestLaps = sortedLaps.sort((x, y) => (x.seconds || 999) - (y.seconds || 999))
@@ -431,17 +424,24 @@ for (const [i,topics] of gokartssub.entries()){
 
         thirdname.textContent = fastestLaps[2]?.seconds ? fastestLaps[2]?.user.username : "";
 
-        name1.textContent = fastestLaps[0]?.user.username;
+        speedstuff.innerHTML ="";
+        for(let i=0;i<gokartssub.length;i++){
+            speedstuff.innerHTML += `<div class="speedelements"> 
+                <div><img id="gokart" src="/img/gokart.png"></img></div>                
+
+                <div class="speedplayer1">               
+                    
+                <div class="name">${fastestLaps[i]?.user.username}</div>
+
+                <span id="setting">Best:<span class = "best">${secondtime(fastestLaps[i]?.seconds) || "--:--.--"}</span></span>
+                
+                <span id="setting">Top speed:<span class = "speed"">0 MPH</span></span>
+
+                </div>
+
+                </div>`
+        }
         
-        name2.textContent = fastestLaps[1]?.user.username;
-        
-        name3.textContent = fastestLaps[2]?.user.username;
-
-        best1.textContent = secondtime(fastestLaps[0]?.seconds);
-
-        best2.textContent = secondtime(fastestLaps[1]?.seconds);
-
-        best3.textContent = secondtime(fastestLaps[2]?.seconds);
         
         myChart1.update();
 

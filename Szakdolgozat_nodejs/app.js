@@ -56,54 +56,26 @@ wss.on("connection",function connection(ws){
     ws.on("message",function incoming(message){
 
         var gokarts = (JSON.parse(message))
-        
-        db.query("select gokart_name and gokart_messageType from gokart_users where gokart_name = ? and gokart_messageType = ?",[gokarts.data.name[0],gokarts.data.messageType[0]],(error,results) =>{
-            
-            if(error) {
-                console.log(error);
-            }
-            
-            if(results.length > 0){
-                console.log("Már van ilyen tulajdonságú gokart az adatbázisban")
-            }
-            
-            else{
-                db.query("INSERT INTO gokart_users (gokart_name,gokart_messageType) values(?,?)",[gokarts.data.name[0],gokarts.data.messageType[0]]);
-                console.log("A "+gokarts.data.name[0]," bekerült az adatbázisba")            
-            }
-        }) 
-        
-        db.query("select gokart_name and gokart_messageType from gokart_users where gokart_name = ? and gokart_messageType = ?",[gokarts.data.name[1],gokarts.data.messageType[1]],(error,results) =>{
-            
-            if(error) {
-                console.log(error);
-            }
-            
-            if(results.length > 0){
-                console.log("Már van ilyen tulajdonságú gokart az adatbázisban")
-            }
-            
-            else{
-                db.query("INSERT INTO gokart_users (gokart_name,gokart_messageType) values(?,?)",[gokarts.data.name[1],gokarts.data.messageType[1]]);
-                console.log("A "+gokarts.data.name[1]," bekerült az adatbázisba")            
-            }
-        })
 
-        db.query("select gokart_name and gokart_messageType from gokart_users where gokart_name = ? and gokart_messageType = ?",[gokarts.data.name[2],gokarts.data.messageType[2]],(error,results) =>{
-        
-            if(error) {
-                console.log(error);
-            }
-        
-            if(results.length > 0){
-                console.log("Már van ilyen tulajdonságú gokart az adatbázisban")
-            }
+        for(let i=0;i<gokarts.data[Object.keys(gokarts.data)[0]].length;i++){
+            db.query("select gokart_name and gokart_messageType from gokart_users where gokart_name = ? and gokart_messageType = ?",[gokarts.data.name[i],gokarts.data.messageType[i]],(error,results) =>{
             
-            else{
-                db.query("INSERT INTO gokart_users (gokart_name,gokart_messageType) values(?,?)",[gokarts.data.name[2],gokarts.data.messageType[2]]);
-                console.log("A "+gokarts.data.name[2]," bekerült az adatbázisba")            
-            }
-        }) 
+                if(error) {
+                    console.log(error);
+                }
+                
+                if(results.length > 0){
+                    console.log("Már van ilyen tulajdonságú gokart az adatbázisban")
+                }
+                
+                else{
+                    db.query("INSERT INTO gokart_users (gokart_name,gokart_messageType) values(?,?)",[gokarts.data.name[i],gokarts.data.messageType[i]]);
+                    console.log("A "+gokarts.data.name[i]," bekerült az adatbázisba")            
+                }
+            }) 
+
+        }
+        
         
     })
 
