@@ -9,5 +9,24 @@ Végezzük el a következő kódok futtatását a parancssorban.
   ### 2.Kulcsok beállítása  
         •	sudo apt install curl #  
         •	curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add –  
+  
+  ### 3.ROS csomagok telepítése
+        •	sudo apt update
+        •	sudo apt install ros-melodic-desktop-full
+        
+  ### 4.Környezet beállítása
+        •	echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+        •	source ~/.bashrc
+        
+  ### 5.Csomagok függőségeinek beállítása
+        •	sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+        
+  ### 6. Rosdep inicializálása
+        •	sudo apt install python-rosdep
+        •	sudo rosdep init
+        •	rosdep update
+
+
+   
 
   
