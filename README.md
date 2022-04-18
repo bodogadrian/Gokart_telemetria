@@ -82,7 +82,7 @@ Most már lehetővé válik az, hogy az adott programkóddal elindítsuk és mű
         
         •	npm start
         
-#Tippek, hogy jól működjön a projekt:
+### Tippek, hogy jól működjön a projekt:
   - Az üzemeltető első futtatásakor ha a robot nem csatlakozik a gokartokhoz, akkor frissítsük az oldalt.
   - A pályarajz exportálásánál a gokarts.csv fájl a csv mappába legyen elmentve.
 
