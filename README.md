@@ -62,21 +62,22 @@ A MySQL letöltését a terminálba írva a következőképpen végezhetjük el.
         •	sudo apt update
         •	sudo apt install mysql-server
         •	sudo mysql_secure_installation
-A feljövő üzenetekre válaszoljunk az alábbiak szerint.
-      y | 0 | password | y | y | n | n | y
-        •	sudo mysql
-        •	select user, authentication_string, plugin from mysql.user;
-        •	ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Sopron97'
-        •	FLUSH PRIVILEGES;
-        •	sudo mysql -u root -p
+A feljövő üzenetekre válaszoljunk az alábbiak szerint.  
+      y | 0 | password | y | y | n | n | y  
+        •	sudo mysql  
+        •	select user, authentication_string, plugin from mysql.user;  
+        •	ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password'  
+        •	FLUSH PRIVILEGES;  
+        •	sudo mysql -u root -p  
         
-A szoftverkezelőből töltsük le a MySQL Workbenchet és a Connection Name lehetőséghez írjuk be, hogy local, a jelszóhoz pedig az eddig használt jelszavunk. Miután sikeresen beléptünk a felületre, hozzunk létre egy új táblát db néven. Miután ez megtörtént a Server fül alatt kattintsunk a Data Import lehetőségre, ahol válasszuk ki a projektünk database almappáját és importáljuk be a fájljainkat.
+A szoftverkezelőből töltsük le a MySQL Workbenchet és a Connection Name lehetőséghez írjuk be, hogy local, a jelszóhoz pedig az eddig használt jelszavunk. Miután sikeresen beléptünk a felületre, hozzunk létre egy új táblát db néven.  
+Miután ez megtörtént a Server fül alatt kattintsunk a Data Import lehetőségre, ahol válasszuk ki a projektünk database almappáját és importáljuk be a fájljainkat.
 A munka utolsó lépése, hogy a nodejs verzióját feltelepítsük az alábbiak szerint.
 
         •	curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
         •	sudo apt-get install -y nodejs
         
-Most már lehetővé válik az, hogy az adott programkóddal elindítsuk és működtessük projektünket a `localhost:5000` alatt.
+Most már lehetővé válik az, hogy az adott programkóddal elindítsuk és működtessük projektünket a `localhost:5000` alatt.  
         •	npm start
 
 
