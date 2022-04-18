@@ -1,6 +1,6 @@
-# ROS kompatibilis Gokart Web Telemetria
+## ROS kompatibilis Gokart Web Telemetria
 
-#Telepítési útmutató
+# Telepítési útmutató
 
 Végezzük el a következő kódok futtatását a parancssorban.
   1.Source.list beállítása
