@@ -5,36 +5,55 @@
   }
 
   #myChart1{
-    height: 550px;
-    width: 550px;
+    height: 450px;
+    width: 450px;
     margin-top:15px;
+    margin-left: 220px;
+    
+    
   }
   
    
   #myChart2{
-    height: 550px;
-    width: 550px;
+    height: 450px;
+    width: 450px;
     margin-top:15px;
+    
   }
   
-  .wrapper{
-    position: relative;
-  }
 
   .wrapper canvas{
-    position: absolute;
-    top:0;
-    right: 0;
-    border: 2px solid black;
-    margin-right: 7px;
+    position: absolute;  
+    margin-right: 10px;
   }
+
+  .wrapper{
+    position: relative;
+    flex-basis: 50% ;
+    border: 2px solid black;
+    display: block;
+    margin-left: 4px;
+    margin-top: 15px;
+    margin-right: 12px;
+    
+
+  }
+
   #speeds{
-    height: 600px;
+    height: 500px;
     margin-top:15px;
-    width: 700px;
     margin-left: 5px;
     float: left;
+    flex-basis: 50% ;
 
+  }
+  .speedelements{
+    flex-direction: row;
+    display: flex;
+    border: 2px solid black;
+    margin-bottom: 5px;
+    margin-left:1px;
+    padding: 0.2rem;
   }
   #header{
     border: 2px solid black;
@@ -151,15 +170,7 @@
   margin-top: 7px;
   margin-bottom: 7px;
 }
-.speedelements{
-  flex-direction: row;
-  display: flex;
-  border: 2px solid black;
-  margin-bottom: 5px;
-  margin-left:1px;
-  padding: 0.2rem;
 
-}
 #setting{
   display: flex;
   flex-direction: row;
@@ -176,4 +187,8 @@
 #speeds{
   letter-spacing: 0.025em;
 
+}
+#newdiv {
+  display:flex;
+  width: 100%;
 }
