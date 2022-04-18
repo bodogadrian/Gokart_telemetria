@@ -37,7 +37,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'bodogadrian','bodog.adrian@gmail.com','$2a$08$xbE.k0Zxa01R5bZRNiGhKeGET/BYBI56G8j41d/rz876pLwjTXh4y'),(2,'versenyzo','bodog.adr1ian@gmail.com','$2a$08$Oq1lgUuCslC0UBOOwWziRuOWga0NuVBvCwMj.KSBwM/SLWbGijVQy');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-18  9:43:21
+-- Dump completed on 2022-04-18 10:29:17

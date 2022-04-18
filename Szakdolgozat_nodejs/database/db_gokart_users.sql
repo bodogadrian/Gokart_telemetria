@@ -36,7 +36,6 @@ CREATE TABLE `gokart_users` (
 
 LOCK TABLES `gokart_users` WRITE;
 /*!40000 ALTER TABLE `gokart_users` DISABLE KEYS */;
-INSERT INTO `gokart_users` VALUES (1,'/dwm1201/pos','nav_msgs/Odometry'),(2,'/dwm1202/pos','nav_msgs/Odometry'),(3,'/dwm1203/pos','nav_msgs/Odometry');
 /*!40000 ALTER TABLE `gokart_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-18  9:43:21
+-- Dump completed on 2022-04-18 10:29:17

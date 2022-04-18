@@ -38,7 +38,6 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (8,'adminvagyok','bodog.adrian@gmail.com','$2a$08$8nNpclayd8CrbQ/a.YY48.xcpsg7QfvFqqil80L1tpGFr6YX./tNq',NULL),(9,'bodogadrian','bodog.adrian@gmail.com','$2a$08$9gWhOUIbyckav/gmYnF00.uk6nwguRqaXGm17GA78rAhkAqBs7fIe',NULL);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-18  9:43:21
+-- Dump completed on 2022-04-18 10:29:16
