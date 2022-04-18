@@ -81,6 +81,10 @@ A munka utolsó lépése, hogy a nodejs verzióját feltelepítsük az alábbiak
 Most már lehetővé válik az, hogy az adott programkóddal elindítsuk és működtessük projektünket a `localhost:5000` alatt.  
         
         •	npm start
+        
+#Tippek, hogy jól működjön a projekt:
+  - Az üzemeltető első futtatásakor ha a robot nem csatlakozik a gokartokhoz, akkor frissítsük az oldalt.
+  - A pályarajz exportálásánál a gokarts.csv fájl a csv mappába legyen elmentve.
 
 
 
