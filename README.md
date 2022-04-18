@@ -64,6 +64,7 @@ A MySQL letöltését a terminálba írva a következőképpen végezhetjük el.
         •	sudo mysql_secure_installation
 A feljövő üzenetekre válaszoljunk az alábbiak szerint.  
       y | 0 | password | y | y | n | n | y  
+        
         •	sudo mysql  
         •	select user, authentication_string, plugin from mysql.user;  
         •	ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password'  
@@ -78,6 +79,7 @@ A munka utolsó lépése, hogy a nodejs verzióját feltelepítsük az alábbiak
         •	sudo apt-get install -y nodejs
         
 Most már lehetővé válik az, hogy az adott programkóddal elindítsuk és működtessük projektünket a `localhost:5000` alatt.  
+        
         •	npm start
 
 
