@@ -26,11 +26,14 @@ ros.on('close',function(){
 
 
 let gokartssub = []
+let speedsub = [];
 let gokarts = {};
 gokarts.name = []
 gokarts.messageType = []
 
-for(let i=1;i<4;i++){
+let gokarts_numbers = 4;
+
+for(let i=1;i<gokarts_numbers;i++){
     let topic = new ROSLIB.Topic({
         ros:ros,
         name: "/dwm120"+i+"/pos",
@@ -40,6 +43,14 @@ for(let i=1;i<4;i++){
     gokarts.name.push(topic.name)
     gokarts.messageType.push(topic.messageType)
 
+}
+for(let i=1;i<gokarts_numbers;i++){
+    let speedtopics = new ROSLIB.Topic({
+        ros:ros,
+        name: "/dwm120"+i+"/cmd_vel",
+        messageType:"geometry_msgs/Twist"
+    });
+    speedsub.push(speedtopics)
 }
 
 var myChart2;
@@ -143,7 +154,7 @@ let canvas1 = document.getElementById('myChart1');
 
 let ctx1 = canvas1.getContext('2d');
 
-const colors = ["red", "blue", "yellow","grey","black","purple","brown"]
+const colors = ["red", "blue", "brown","yellow","black","purple","grey"]
 
 socket.addEventListener("message",function (event){
 
@@ -254,9 +265,95 @@ socket.addEventListener("message",function (event){
     init();    
 
 })
-
-
 const names = JSON.parse(localStorage.getItem("idname"))
+
+var myChart3;
+
+let canvas3 = document.getElementById('myChart3');
+
+let ctx3 = canvas3.getContext('2d');
+
+    myChart3 = new Chart(ctx3, {
+    type: 'scatter',
+    data: {
+
+        datasets: names.map((x, i) => ({
+
+            backgroundColor: [colors[i]],
+
+            data: []
+        })
+        
+    )},
+
+    
+
+    
+    options: {
+
+        legend:{
+
+        display:false,
+
+        },
+
+        scales: {
+
+            xAxes: [{
+
+                gridLines:{
+                    display:true,
+                },
+
+                ticks:{
+
+                    stepSize:10,
+                    
+                    suggestedMin:0,
+
+                    suggestedMax:80,
+
+                    fontColor:"white",
+
+                    fontSize:22,  
+                    
+                    display:true,
+
+
+                }
+
+            }],
+            
+            yAxes: [{
+
+             gridLines:{
+                    display:true,
+                },
+
+                ticks:{
+                    
+                    stepSize:5,
+                    
+                    suggestedMin:0,
+
+                    suggestedMax:20,
+
+                    fontColor:"white",
+
+                    fontSize:22,
+
+                }
+
+            }]
+
+        }
+
+    }
+    
+    
+});
+
+
 const firstlap = document.getElementById("firsttime")
 const secondlap = document.getElementById("secondtime")
 const thirdlap = document.getElementById("thirdtime")
@@ -348,7 +445,7 @@ for(let i=0;i<gokartssub.length;i++){
 
         <span id="setting">Best:<span class = "best">--:--.--</span></span>
         
-        <span id="setting">Top speed:<span class = "speed"">0 MPH</span></span>
+        <span id="setting">Speed:<span class = "speed"">0 KM/H</span></span>
 
         </div>
 
@@ -359,7 +456,7 @@ for (const [i,topics] of gokartssub.entries()){
     topics.subscribe(function(message){
 
         myChart1.data.datasets[i].data.push({x:message.pose.pose.position.x, y:message.pose.pose.position.y});        
-
+        
         let x = message.pose.pose.position.x;
 
         let y = message.pose.pose.position.y;
@@ -435,8 +532,8 @@ for (const [i,topics] of gokartssub.entries()){
 
                 <span id="setting">Best:<span class = "best">${secondtime(fastestLaps[i]?.seconds) || "--:--.--"}</span></span>
                 
-                <span id="setting">Top speed:<span class = "speed"">0 MPH</span></span>
-
+                <span id="setting">Speed:<span class = "speed"">${Math.round(((fastestLaps[i]?.speed) || 0))} KM/H</span></span>
+                
                 </div>
 
                 </div>`
@@ -444,6 +541,23 @@ for (const [i,topics] of gokartssub.entries()){
         
         
         myChart1.update();
+
+    })
+}
+
+let value = 0;
+
+for (const [i,speedtopics] of speedsub.entries()){
+    
+    speedtopics.subscribe(function(message){
+
+        value = value + 0.01;
+
+        myChart3.data.datasets[i].data.push({x:value, y:message.linear.x * 3.6});  
+
+        rounds[i][rounds[i].length - 1].speed = message.linear.x * 3.6;
+
+        myChart3.update();
 
     })
 }

@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Sopron97",
+    password: "password",
     database: "db"
 });
 
@@ -51,7 +51,7 @@ exports.login_with_password = (req, res) => {
     })
   }
   db.query('SELECT * FROM users WHERE username = ? and email = ?', [username,email], async (error, results) => {
-    if(results < 3 || !(await bcrypt.compare(password,results[0].password))){
+    if(results < 1 || !(await bcrypt.compare(password,results[0].password))){
       res.status(401).render("login_with_password",{
           message:"Hibás adatokat adtál meg"
       })
@@ -103,7 +103,7 @@ exports.login_admin = (req, res) => {
     })
   }
   db.query('SELECT * FROM admin WHERE username = ? and email = ?', [username,email], async (error, results) => {
-    if(results < 3 || !(await bcrypt.compare(password,results[0].password))){
+    if(results <1  || !(await bcrypt.compare(password,results[0].password))){
       res.status(401).render("login_admin",{
         message:"Hibás adatokat adtál meg."
       })

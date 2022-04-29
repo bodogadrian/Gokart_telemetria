@@ -5,18 +5,20 @@
   }
 
   #myChart1{
-    height: 450px;
-    width: 450px;
+    height: 550px;
+    width: 550px;
     margin-top:15px;
+    margin-left:180px;
     
     
   }
   
    
   #myChart2{
-    height: 450px;
-    width: 450px;
+    height: 550px;
+    width: 550px;
     margin-top:15px;
+    margin-left:180px;
     
   }
   
@@ -31,12 +33,35 @@
     flex-basis: 50% ;
     border: 2px solid black;
     display: block;
+    height: 585px;
     margin-left: 4px;
     margin-top: 15px;
     margin-right: 12px;
-    
+  }
+  .speedchart{
+    border: 2px solid black;
+    margin-left: 4px;
+    margin-top: 15px;
+    margin-right: 12px;
+    width: 49.4%;
+    float: right;
+    margin-bottom: 4px;
+  }
+
+
+  #myChart3{
+    width: 600px;
+    margin-top:15px;
 
   }
+  #speedtext{
+    margin-left: 10px;
+    margin-top: 5px;
+    color:#2a0357;
+    font-weight: bold;
+    font-style: oblique;
+  }
+
 
   #speeds{
     height: 500px;
