@@ -11,14 +11,14 @@ const db = mysql.createConnection({
 exports.register_with_password = (req,res) =>{
   console.log(req.body)
   const {username,password,email} = req.body;
-    db.query("select username from users where username = ? and email = ?", [username,email],async(error,results) =>{
+    db.query("select email from users where email = ?", [email],async(error,results) =>{
         if(error) {
             console.log(error);
         }
          console.log(results) 
           if(results.length > 0){
             return res.render('register_with_password',{
-              message:"Ez a felhasználónév vagy email cím már használatban van."
+              message:"Ez az email cím már használatban van."
             })
           }
           if (!username || !password || !email){
@@ -65,13 +65,13 @@ exports.login_with_password = (req, res) => {
 exports.register_admin = (req,res) =>{
   console.log(req.body)
   const {username,password,email} = req.body;
-    db.query("select username from admin where username = ? and email = ? ", [username,email],async(error,results) =>{
+    db.query("select email from admin where email = ? ", [email],async(error,results) =>{
         if(error) {
             console.log(error);
           }
           if(results.length > 0){
             return res.render('register_admin',{
-              message:"Ez a felhasználónév vagy email cím már használatban van."
+              message:"Ez az email cím már használatban van."
             })
           }
           if (!username || !password || !email){
